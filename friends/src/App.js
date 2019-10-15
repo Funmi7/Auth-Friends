@@ -5,6 +5,12 @@ import './App.css';
 import Login from './components/Login';
 import FriendsList from './components/FriendsList';
 
+function withAthCheck(Component, props) {
+  if (localStorage.getItem('payload')) {
+    return <Component {...props} />
+  }
+  return <Redirect to='/' />;
+}
 
 function App(props) {
 
@@ -27,11 +33,6 @@ function App(props) {
   );
 }
 
-function withAthCheck(Component, props) {
-  if (localStorage.getItem('payload')) {
-    return <Component {...props} />
-  }
-  return <Redirect to='/' />;
-}
+
 
 export default withRouter(App);
