@@ -6,14 +6,14 @@ export default function Login(props) {
     const passwordRef = useRef();
 
     const submit = () => {
-        axios.post('http://localhost:5000/api/friends',{
-            userName: userNameRef.current.value,
-            password: passwordRef.current.value
+        axios.post('http://localhost:5000/api/login',{
+            username: userNameRef.current.value,
+            password: passwordRef.current.value,
         })
 
         .then(res => {
-            localStorage.setItem('token', res.data.payload);
-            props.histor.push('/friendsList');
+            localStorage.setItem('payload', res.data.payload);
+            props.history.push('/friendsList');
         })
 
         .catch(error => {
